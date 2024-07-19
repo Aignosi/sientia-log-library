@@ -1,0 +1,8 @@
+#virtual environment
+venv/
+#run time files
+tmp/
+local_model/
+
+.vscode/
+sientia_tracker/__pycache__
