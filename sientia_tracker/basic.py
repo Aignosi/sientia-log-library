@@ -1,7 +1,7 @@
 import mlflow
 import os
 import mlflow.sklearn
-from typing import Any, Dict, List
+from typing import Any, Dict
 
 # remove warnings
 import warnings
@@ -145,32 +145,3 @@ class BaseTracker:
         else:
             run_name = None
         return run_name
-
-class SimpleTracker(BaseTracker):
-    """
-    Tracker object for generic models. Requires a dataset name and model inputs
-    """
-    def __init__(self, tracking_uri, username: str = None, password: str = None):
-        super().__init__(tracking_uri, username, password)
-
-    def save_experiment(self, dataset_name: str = "data", inputs: str | List[str] = "inputs") -> mlflow.ActiveRun:
-        """
-        Start a run in MLflow.
-
-        params:
-            dataset_name: Name of the dataset
-            inputs: Name of the model inputs
-        """
-
-        mlflow.log_params({
-            "Dataset": dataset_name,
-            "Inputs": inputs,
-            })
-        
-        print("Saving experiment", self.project_name)
-        runs = mlflow.search_runs(experiment_names=[
-            self.project_name], order_by=["start_time desc"])
-        next_run_number = len(runs) + 1
-        active_run = mlflow.start_run(run_name=f"{self.project_name}-{next_run_number}")
-        return active_run
-

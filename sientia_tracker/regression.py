@@ -1,7 +1,7 @@
 
 import mlflow
 from typing import Any, List
-from basic import BaseTracker
+from sientia_tracker.basic import BaseTracker
 
 class RegressionTracker(BaseTracker):
     """
@@ -33,7 +33,15 @@ class RegressionTracker(BaseTracker):
             train_size: Proportion of the data used to traind the model. Default: 0.8
             shuffle: Wheter or not the train data was shuffled. Default: True
         """
+        mlflow.end_run()
+        
+        
+        print("Saving experiment", self.project_name)
+        runs = mlflow.search_runs(experiment_names=[
+            self.project_name], order_by=["start_time desc"])
+        next_run_number = len(runs) + 1
 
+        active_run = mlflow.start_run(run_name=f"{self.project_name}-{next_run_number}")
         mlflow.log_params({
             "Model": "Linear Regression",
             "Dataset": dataset_name,
@@ -44,12 +52,7 @@ class RegressionTracker(BaseTracker):
             "Shuffle": shuffle,
         })
         
-        mlflow.log_model(model,model_name)
+        mlflow.sklearn.log_model(model,model_name)
         mlflow.log_metrics({"r2":r2})
         
-        print("Saving experiment", self.project_name)
-        runs = mlflow.search_runs(experiment_names=[
-            self.project_name], order_by=["start_time desc"])
-        next_run_number = len(runs) + 1
-        active_run = mlflow.start_run(run_name=f"{self.project_name}-{next_run_number}")
         return active_run
