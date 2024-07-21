@@ -1,5 +1,7 @@
 #virtual environment
 venv/
+venvn/
+
 #run time files
 tmp/
 local_model/
