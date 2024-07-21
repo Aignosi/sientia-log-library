@@ -6,7 +6,7 @@ with open('requirements.txt') as f:
 
 setup(
     name='sientia_tracker',
-    version='1.0.0',
+    version='1.0.1',
     author='Ítalo Azevedo',
     author_email='italo@aignosi.com',
     description='Library for Aignosi Tracking API',
