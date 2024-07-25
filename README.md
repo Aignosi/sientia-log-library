@@ -1,3 +1,3 @@
 # Sientia Log Library
-Library for users to log information on mlflow through SIENTIA
+Library for users to log information on mlflow through SIENTIA 
 Documentation for the library can be found [here](https://psychic-waddle-7kwrrmw.pages.github.io/)
