@@ -5,6 +5,6 @@ venvn/
 #run time files
 tmp/
 local_model/
-
+site/
 .vscode/
 sientia_tracker/__pycache__
