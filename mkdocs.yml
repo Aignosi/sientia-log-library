@@ -1,0 +1,19 @@
+site_name: SIENTIA™ Log Library
+
+nav:
+  - Home: 
+    - Introduction: index.md
+  - Modules:  
+      - Basic Tracker : basic.md
+      - Simple Tracker : simple.md
+      - Regression Tracker: regression.md
+  - Quick Start:
+      - Simple Tracker Notebook: simple_tracker.ipynb
+      - Regression Tracker Notebook: regression_tracker.ipynb
+
+plugins: 
+  - mkdocstrings
+  - mkdocs-jupyter
+
+use_directory_urls: false
+theme: readthedocs
