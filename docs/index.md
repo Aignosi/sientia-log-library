@@ -1,7 +1,7 @@
 # SIENTIA™ Log Library Documentation 
 
-Welcome to the SIENTIA™ Log Library Documentation. 
-This documentation provides an overview of the SIENTIA™ Log Library, a comprehensive tool designed to facilitate tracking and logging for various types of data analysis and machine learning workflows.
+
+This documentation provides an overview of the SIENTIA™ Log Library, a tool designed to facilitate tracking and logging for various types of data analysis and machine learning workflows.
 
 ## Modules
 
