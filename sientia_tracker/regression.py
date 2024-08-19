@@ -10,15 +10,17 @@ class RegressionTracker(BaseTracker):
     def __init__(self, tracking_uri, username: str = None, password: str = None):
         super().__init__(tracking_uri, username, password)
 
-    def save_experiment(self,model: Any,
-                    model_name: str = "regr_model",
-                    dataset_name: str = "data",
-                    inputs: str | List[str] = "inputs",
-                    target: str = 'target',
-                    date_column: str = "date",
-                    r2: float = 1.0, 
-                    train_size: float = 0.8,
-                    shuffle: bool = True) -> mlflow.ActiveRun:
+    def save_experiment(self,
+                        model: Any,
+                        model_name: str = "regr_model",
+                        dataset_name: str = "data",
+                        inputs: str | List[str] = "inputs",
+                        target: str = 'target',
+                        date_column: str = "date",
+                        r2: float = 1.0, 
+                        train_size: float = 0.8,
+                        shuffle: bool = True
+                        ) -> mlflow.ActiveRun:
         """
         Start a run in MLflow.
 
@@ -32,6 +34,9 @@ class RegressionTracker(BaseTracker):
             r2: r2-score of the model. Default: 1
             train_size: Proportion of the data used to traind the model. Default: 0.8
             shuffle: Wheter or not the train data was shuffled. Default: True
+
+        returns:
+            active_run: The active run in MLflow
         """
         mlflow.end_run()
         

@@ -14,9 +14,13 @@ class SimpleTracker(BaseTracker):
         """
         Start a run in MLflow.
 
-        params:
+        Parameters:
             dataset_name: Name of the dataset
             inputs: Name of the model inputs
+
+        Returns:
+            active_run: Active run in MLflow
+
         """
 
         mlflow.end_run()

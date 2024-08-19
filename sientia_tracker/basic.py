@@ -27,6 +27,7 @@ class BaseTracker:
         Args:
             sk_model: scikit-learn model to be saved
             artifact_path: name of the model
+            extra_pip_requirements: additional pip requirements to be installed
 
         Returns:
             None
@@ -70,8 +71,16 @@ class BaseTracker:
         """
         mlflow.log_artifact(local_path, artifact_path, **kwargs)
 
-    def set_project(self, project_name: str):
-         # Check if the experiment already exists; if not, create it
+    def set_project(self, project_name: str)-> None:
+        """
+        Check if the experiment already exists; if not, create it
+
+        Args:
+            project_name (str): The name of the project.
+
+        Returns:
+            None
+        """
         project = mlflow.get_experiment_by_name(
             project_name)
         if project is None:
@@ -134,10 +143,10 @@ class BaseTracker:
         Get the run name associated with a run ID.
 
         Args:
-            run_id (str): The run ID.
+            run_id (str): Run ID.
 
         Returns:
-            str: The run name.
+            str: Run name.
         """
         if run_id:
             run_info = mlflow.get_run(run_id)
