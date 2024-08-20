@@ -11,8 +11,19 @@ class BaseTracker:
     """
     Basic Tracker object that don't have any requirements nor parameters to be used
     """
-    def __init__(self, tracking_uri, username: str = None, password: str = None):
-        # set tracking uri
+    def __init__(self, tracking_uri:str, username: str = None, password: str = None)-> None:
+        """
+        Initialize the tracker object
+
+        Parameters:
+            tracking_uri: URI to the MLflow server
+            username: Username to access the MLflow server
+            password: Password to access the MLflow server
+        
+        Returns:
+            None
+        """
+        
         mlflow.set_tracking_uri(tracking_uri)
 
         os.environ['MLFLOW_TRACKING_USERNAME'] = username
@@ -24,7 +35,7 @@ class BaseTracker:
         """
         Log a model to MLflow.
 
-        Args:
+        Parameters:
             sk_model: scikit-learn model to be saved
             artifact_path: name of the model
             extra_pip_requirements: additional pip requirements to be installed
@@ -38,7 +49,7 @@ class BaseTracker:
         """
         Log parameters to MLflow.
 
-        Args:
+        Parameters:
             params: Dict with the parameters to log.
 
         Returns:
@@ -50,7 +61,7 @@ class BaseTracker:
         """
         Log metrics to MLflow.
 
-        Args:
+        Parameters:
             params: Dict with the metrics to log.
 
         Returns:
@@ -62,7 +73,7 @@ class BaseTracker:
         """
         Log an artifact to MLflow.
 
-        Args:
+        Parameters:
             local_path: Path to the file to write.
             artifact_path: If provided, the directory in artifact_uri to write to.
 
@@ -75,7 +86,7 @@ class BaseTracker:
         """
         Check if the experiment already exists; if not, create it
 
-        Args:
+        Parameters:
             project_name (str): The name of the project.
 
         Returns:
@@ -95,7 +106,7 @@ class BaseTracker:
         """
         Start a run in MLflow.
 
-        Args:
+        Parameters:
             **kwargs: The parameters to log.
 
         Returns:
@@ -112,7 +123,7 @@ class BaseTracker:
         """
         Get the run_id of a model based on its name and stage.
 
-        Args:
+        Parameters:
             model_name (str): The name of the model.
             stage (str): The stage of the model.
 
@@ -128,7 +139,7 @@ class BaseTracker:
         """
         Get the project name associated with a model.
 
-        Args:
+        Parameters:
             model_name (str): The name of the model.
 
         Returns:
@@ -142,7 +153,7 @@ class BaseTracker:
         """
         Get the run name associated with a run ID.
 
-        Args:
+        Parameters:
             run_id (str): Run ID.
 
         Returns:
