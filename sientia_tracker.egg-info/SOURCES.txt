@@ -1,0 +1,14 @@
+LICENCE
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+sientia_tracker/__init__.py
+sientia_tracker/basic.py
+sientia_tracker/regression.py
+sientia_tracker/simple_tracker.py
+sientia_tracker.egg-info/PKG-INFO
+sientia_tracker.egg-info/SOURCES.txt
+sientia_tracker.egg-info/dependency_links.txt
+sientia_tracker.egg-info/requires.txt
+sientia_tracker.egg-info/top_level.txt

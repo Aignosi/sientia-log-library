@@ -8,3 +8,4 @@ local_model/
 site/
 .vscode/
 sientia_tracker/__pycache__
+dist/

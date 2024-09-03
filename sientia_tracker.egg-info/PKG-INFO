@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: sientia_tracker
+Version: 1.0.6
+Summary: Library for Aignosi Tracking API
+Author: ['Ítalo Azevedo', 'Pedro Bahia', 'Matheus Demoner']
+Author-email: ['italo@aignosi.com.br', 'pedro.bahia@aignosi.com.br', 'matheus@aignosi.com.br']
+License: Apache License 2.0
+Keywords: sientia
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENCE
+Requires-Dist: mlflow==2.10.1
+Requires-Dist: typing
+
+# Sientia Log Library
+Library for users to log information through SIENTIAâ„¢ <br />
+
+Documentation for the library can be found [here](https://psychic-waddle-7kwrrmw.pages.github.io/) (Work in Progress)
