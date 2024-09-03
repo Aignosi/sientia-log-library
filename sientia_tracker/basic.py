@@ -97,6 +97,7 @@ class BaseTracker:
         if project is None:
             mlflow.create_experiment(name=project_name)
             self.project_name = project_name
+            print(f"Experiment {project_name} created")
 
         else:
             # Activate the experiment for tracking
