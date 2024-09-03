@@ -9,7 +9,7 @@ with open("README.md", "r") as arq:
 
 setup(
     name='sientia_tracker',
-    version='1.0.6',
+    version='1.0.7',
     license='Apache License 2.0',
     author=['Ítalo Azevedo', 'Pedro Bahia', 'Matheus Demoner'],
     author_email=['italo@aignosi.com.br', 'pedro.bahia@aignosi.com.br', 'matheus@aignosi.com.br'],
