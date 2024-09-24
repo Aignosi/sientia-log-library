@@ -1,4 +1,4 @@
-## Basic Test
+## Basic
 
 ### Overview
 
