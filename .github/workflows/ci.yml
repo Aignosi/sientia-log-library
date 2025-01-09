@@ -27,6 +27,7 @@ jobs:
         # Add the CNAME file with your custom domain after deployment
       - name: Add CNAME file for custom domain
         run: |
+          touch CNAME
           echo "www.aignosi.ai" > CNAME  # Replace with your custom domain
           cd site  # Navigate to the 'site' directory
           git add CNAME
