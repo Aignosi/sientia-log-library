@@ -1,6 +1,5 @@
 site_name: SIENTIA™ Log Library
 
-site_url: https://www.aignosi.ai/documentation/sientia-log-library
 baseurl: "/documentation/sientia-log-library"  # This is the key part
 
 nav:
