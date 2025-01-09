@@ -1,5 +1,4 @@
 site_name: SIENTIA™ Log Library
-baseurl: /documentation/sientia-log-library  # This is the key part
 
 nav:
   - Home: 
