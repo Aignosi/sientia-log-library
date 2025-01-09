@@ -22,14 +22,15 @@ jobs:
       - run: pip install mkdocstrings[python]
       - run: pip install mkdocs-jupyter
       
+      # Runs workflow to build site and deploy it
       - run: mkdocs gh-deploy --force
 
+      # Add CNAME file to the root of gh-pages branch
       - name: Set Git Identity
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
-      # Add CNAME file to the root of gh-pages branch
       - name: Add CNAME file for custom domain
         run: |
           # Ensure we're on the gh-pages branch
