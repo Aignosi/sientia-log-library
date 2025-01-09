@@ -21,6 +21,9 @@ jobs:
       - run: pip install mkdocs-material
       - run: pip install mkdocstrings[python]
       - run: pip install mkdocs-jupyter
+      - run: pip install --upgrade mkdocs
+      - run: pip install --upgrade mkdocs-readthedocs
+
       
       # Runs workflow to build site and deploy it
       - run: mkdocs gh-deploy --force
