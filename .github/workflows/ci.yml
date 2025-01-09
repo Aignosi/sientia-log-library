@@ -37,7 +37,7 @@ jobs:
           git checkout gh-pages
 
           # Create the CNAME file in the root of gh-pages
-          echo "www.humberfol.ai" > CNAME  # Replace with your custom domain
+          echo "www.aignosi.ai" > CNAME  # Replace with your custom domain
 
           # Add and commit the CNAME file
           git add CNAME
