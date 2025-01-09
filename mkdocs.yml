@@ -1,6 +1,6 @@
 site_name: SIENTIA™ Log Libraryies
-site_url: "https://www.aignosi.ai/documentation/sientia-log-library/"  # Custom domain with path
-baseurl: "/documentation/sientia-log-library"  # Path under your custom domain
+baseurl: "/sientia-log-library"  # Path under your custom domain
+site_url: "https://www.aignosi.ai/sientia-log-library/"  # Custom domain with path
 
 nav:
   - Home: 
