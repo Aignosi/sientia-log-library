@@ -25,25 +25,3 @@ jobs:
       
       # Runs workflow to build site and deploy it
       - run: mkdocs gh-deploy --force
-
-      # Add CNAME file to the root of gh-pages branch
-      - name: Set Git Identity
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-
-      - name: Add CNAME file for custom domain
-        run: |
-          # Ensure we're on the gh-pages branch
-          git fetch origin gh-pages
-          git checkout gh-pages
-
-          # Create the CNAME file in the root of gh-pages
-          echo "www.aignosi.ai" > CNAME  # Replace with your custom domain
-
-          # Add and commit the CNAME file
-          git add CNAME
-          git commit -m "Add CNAME file for custom domain"
-
-          # Push the CNAME file to the root of gh-pages
-          git push origin gh-pages
