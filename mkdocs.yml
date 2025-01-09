@@ -1,5 +1,7 @@
 site_name: SIENTIA™ Log Library
 
+site_url: https://www.aignosi.ai/documentation/sientia-log-library  # Add this line
+
 nav:
   - Home: 
     - Introduction: index.md
