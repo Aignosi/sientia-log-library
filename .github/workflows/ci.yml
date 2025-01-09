@@ -24,7 +24,7 @@ jobs:
 
       
       # Runs workflow to build site and deploy it
-      - run: mkdocs gh-deploy --force --remote-branch gh-pages
+      - run: mkdocs gh-deploy --force
 
       # Add CNAME file to the root of gh-pages branch
       - name: Set Git Identity
