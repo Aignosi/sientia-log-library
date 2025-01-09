@@ -24,7 +24,7 @@ jobs:
 
       
       # Runs workflow to build site and deploy it
-      - run: mkdocs gh-deploy --force --remote-branch gh-pages --dir sientia-log-library
+      - run: mkdocs gh-deploy --force --remote-branch gh-pages
 
       # Add CNAME file to the root of gh-pages branch
       - name: Set Git Identity
