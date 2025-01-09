@@ -22,6 +22,5 @@ jobs:
       - run: pip install mkdocstrings[python]
       - run: pip install mkdocs-jupyter
 
-      
       # Runs workflow to build site and deploy it
       - run: mkdocs gh-deploy --force
