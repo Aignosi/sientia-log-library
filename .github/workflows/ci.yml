@@ -27,6 +27,8 @@ jobs:
         # Add the CNAME file with your custom domain after deployment
       - name: Add CNAME file for custom domain
         run: |
+          git fetch origin gh-pages
+          git checkout gh-pages
           touch CNAME
           echo "www.aignosi.ai" > CNAME  # Replace with your custom domain
           cd site  # Navigate to the 'site' directory
