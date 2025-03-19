@@ -1,4 +1,4 @@
-site_name: SIENTIA™ Log Libraryies
+site_name: SIENTIA™ Log Library
 nav:
   - Home: 
       - Introduction: index.md
@@ -11,8 +11,54 @@ nav:
       - Regression Tracker Notebook: regression_tracker.ipynb
 
 plugins: 
-  - mkdocstrings
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            filters: ["!^__init__$"]  # Hide constructor methods
+            show_source: false  # Hide source code by default
+            show_root_heading: true
+            show_category_heading: true
+            heading_level: 3
+            show_submodules: false
+            docstring_style: google
+            docstring_section_style: table
+            members_order: source
+            show_if_no_docstring: false
+            show_signature_annotations: true
+            separate_signature: true
+            line_length: 80
+            show_bases: true
+            show_docstring_attributes: true
+            show_docstring_examples: true
+            show_docstring_other_parameters: true
+            show_docstring_parameters: true
+            show_docstring_raises: true
+            show_docstring_returns: true
+            show_docstring_warns: true
+            show_docstring_yields: true
   - mkdocs-jupyter
 
 use_directory_urls: false
 theme: readthedocs
+
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+      linenums: true
+  - pymdownx.highlight:
+      use_pygments: true
+      linenums: true
+      linenums_style: table
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.smartsymbols
+  - toc:
+      permalink: true
