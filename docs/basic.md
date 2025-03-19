@@ -30,4 +30,22 @@ tracker.log_metrics({"accuracy": 0.95, "loss": 0.05})
 tracker.log_model(model, "my_model", extra_pip_requirements=["numpy==1.21.0"])
 ```
 
-:::sientia_tracker.basic
+---
+
+## API Reference
+
+The following section contains the detailed API reference for the BaseTracker class.
+
+!!! note "Method Documentation"
+    Each method is documented with its parameters, return values, and examples.
+    Methods are separated by horizontal rules for better readability.
+
+::: sientia_tracker.basic
+    options:
+        show_root_heading: true
+        show_category_heading: true
+        heading_level: 2
+        members_order: source
+        separate_signature: true
+        show_signature_annotations: true
+        docstring_section_style: spacy

@@ -39,4 +39,22 @@ tracker.save_experiment(
 tracker.log_metrics({"mean_absolute_error": 0.15, "mean_squared_error": 0.05})
 ```
 
+---
+
+## API Reference
+
+The following section contains the detailed API reference for the RegressionTracker class.
+
+!!! note "Method Documentation"
+    Each method is documented with its parameters, return values, and examples.
+    Methods are separated by horizontal rules for better readability.
+
 ::: sientia_tracker.regression
+    options:
+        show_root_heading: true
+        show_category_heading: true
+        heading_level: 2
+        members_order: source
+        separate_signature: true
+        show_signature_annotations: true
+        docstring_section_style: spacy

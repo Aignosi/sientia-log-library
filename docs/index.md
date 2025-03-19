@@ -1,5 +1,7 @@
 # SIENTIA™ Log Library Documentation
 
+![SIENTIA Logo](img/sientia_logo.png)
+
 Welcome to the documentation for the **SIENTIA™ Log Library**! This library is designed to simplify tracking and logging for a wide range of data analysis and machine learning workflows. Whether you're a data scientist, machine learning engineer, or a citizen data scientist, this tool provides an intuitive way to manage experiments, models, and metrics.
 
 ## Overview
@@ -11,6 +13,17 @@ The SIENTIA™ Log Library is built on top of MLflow and provides a streamlined 
 - **Flexible Integration**: Works with various ML frameworks and tools
 - **Scalable Architecture**: Designed to handle projects of any size
 - **User-Friendly**: Accessible for both technical and non-technical users
+
+## Why Use SIENTIA™ Log Library?
+
+In today's fast-paced data science environment, keeping track of experiments is crucial. The SIENTIA™ Log Library addresses common challenges:
+
+| Challenge | Solution |
+|-----------|----------|
+| **Experiment Reproducibility** | Automatically tracks code versions, parameters, and dependencies |
+| **Model Comparison** | Standardized metrics logging for easy comparison across experiments |
+| **Team Collaboration** | Centralized tracking server for sharing results with team members |
+| **Deployment Readiness** | Structured metadata to streamline the path from experiment to production |
 
 ## Modules
 
@@ -48,3 +61,7 @@ tracker.set_project("my_project")
 tracker.log_params({"learning_rate": 0.01, "batch_size": 32})
 tracker.log_metrics({"accuracy": 0.95, "loss": 0.05})
 ```
+
+## Getting Support
+
+If you encounter any issues or have questions about using the SIENTIA™ Log Library, please reach out to our support team at support@sientia.ai or visit our [community forum](https://community.sientia.ai).
