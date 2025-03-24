@@ -1,4 +1,4 @@
-from sientia_tracker.basic import BaseTracker
+from sientia_tracker.base_tracker import BaseTracker
 import mlflow
 from typing import List, Union
 

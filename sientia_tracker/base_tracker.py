@@ -1,3 +1,5 @@
+#TODO: Explicar o que é o basic tracker
+
 import mlflow
 import os
 import mlflow.sklearn
@@ -46,6 +48,7 @@ class BaseTracker:
         """
         mlflow.sklearn.log_model(sk_model, artifact_path, extra_pip_requirements, **kwargs)
 
+    #TODO: Explicitar que estamos falando de hiperparâmetros
     def log_params(self, params: Dict[str, Any], **kwargs) -> None:
         """
         Log a set of parameters to the SIENTIA platform.
