@@ -9,3 +9,11 @@ site/
 .vscode/
 sientia_tracker/__pycache__
 dist/
+
+# Coverage reports
+.coverage
+coverage.xml
+pytest.xml
+
+# Ignore all __pycache__ directories recursively
+**/__pycache__/
