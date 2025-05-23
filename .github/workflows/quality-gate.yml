@@ -75,5 +75,4 @@ jobs:
             -Dsonar.token=$SONAR_TOKEN \
             -Dsonar.python.version=3.11 \
             -Dsonar.projectVersion=$VERSION \
-            -Dsonar.inclusions=sientia_tracker/** \
-            -Dsonar.exclusions=**/*
+            -Dsonar.exclusions=build/**,docs/**,sientia_tracker.egg-info/**,temp_docs/**,setup.py
