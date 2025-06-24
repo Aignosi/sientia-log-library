@@ -3,19 +3,17 @@ name: Quality gate
 on:
   push:
     branches:
-      - '**'
+      - main
   pull_request:
     branches:
-      - '**'
+      - main
     types: [ opened, synchronize, reopened ]
 
 jobs:
   sonar:
     name: SonarQube Analysis
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-
+    permissions: write-all
     steps:
       - name: ⬇️ Checkout Code
         uses: actions/checkout@v4
@@ -40,14 +38,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pytest pytest-cov
-      
-      - name: ⬇️ Setup Node.js 18
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
-      - name: 📥 Setup SonarScanner
-        uses: warchant/setup-sonar-scanner@v7
 
       - name: 🧪 Run Tests with Pytest
         run: |
@@ -59,20 +49,11 @@ jobs:
           version=$(python -c "import re; f = open('setup.py').read(); print(re.search(r'version=[\"\\']([^\"\\']+)[\"\\']', f).group(1))")
           echo "VERSION=$version" >> $GITHUB_ENV
 
-      - name: 📊 Run SonarQube Analysis
+      - name: Run SonarQube Analysis
+        uses: SonarSource/sonarqube-scan-action@v5
+        with:
+          args: >
+            -Dsonar.projectVersion=$VERSION
         env:
-          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          sonar-scanner \
-            -Dsonar.projectKey=$SONAR_PROJECT_KEY \
-            -Dsonar.sources=sientia_tracker \
-            -Dsonar.tests=tests \
-            -Dsonar.python.coverage.reportPaths=coverage.xml \
-            -Dsonar.python.xunit.reportPath=pytest.xml \
-            -Dsonar.host.url=$SONAR_HOST_URL \
-            -Dsonar.token=$SONAR_TOKEN \
-            -Dsonar.python.version=3.11 \
-            -Dsonar.projectVersion=$VERSION \
-            -Dsonar.exclusions=build/**,docs/**,sientia_tracker.egg-info/**,temp_docs/**,setup.py
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
