@@ -9,3 +9,7 @@ site/
 .vscode/
 sientia_tracker/__pycache__
 dist/
+
+# demo files
+/demo.py
+data_demo/
