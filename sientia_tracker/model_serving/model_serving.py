@@ -17,12 +17,20 @@ class ModelServing:
         # Create an MLflow client
         self.client = mlflow.tracking.MlflowClient()
         
+        self.LogTracker = LogTracker()
+        self.RunTracker = RunTracker()
+        self.ExperimentTracker = ExperimentTracker()
+        self.ModelTracker = ModelTracker(self.client)
+        self.RetrieverTracker = RetrieverTracker(self.client)
+        
+        # Enable legacy suport so outdated code can still work with this new interface
         self._delegated_objects = []
-        self._delegated_objects.append(LogTracker())
-        self._delegated_objects.append(RunTracker())
-        self._delegated_objects.append(ExperimentTracker())
-        self._delegated_objects.append(ModelTracker(self.client))
-        self._delegated_objects.append(RetrieverTracker(self.client))
+        self._delegated_objects.append(self.LogTracker)
+        self._delegated_objects.append(self.RunTracker)
+        self._delegated_objects.append(self.ExperimentTracker)
+        self._delegated_objects.append(self.ModelTracker)
+        self._delegated_objects.append(self.RetrieverTracker)
+
         
     def __getattr__(self, nome):
         for obj in self._delegated_objects:
