@@ -6,14 +6,14 @@ import mlflow
 class LogTracker:
     def log_prediction_model(self,sk_model: Any) -> None:
         """
-            Log a sklearn model.
+            Log a prediction model. A prediction model is any sklearn regressor model.
 
             Args:
-            sk_model: scikit-learn model to be saved.
-            artifact_path: Run-relative artifact path.
+                sk_model: scikit-learn model to be saved.
+                artifact_path: Run-relative artifact path.
 
             Returns:
-            None
+                None
         """
         mlflow.sklearn.log_model(
             sk_model, 
@@ -22,14 +22,15 @@ class LogTracker:
 
     def log_data_model(self,sk_model: Any) -> None:
         """
-            Log a sklearn model.
+            Log a data model. A data model is any sklearn model whose aim
+            is to process data before the calling of a prediction model.
 
             Args:
-            sk_model: scikit-learn model to be saved.
-            artifact_path: Run-relative artifact path.
+                sk_model: scikit-learn model to be saved.
+                artifact_path: Run-relative artifact path.
 
             Returns:
-            None
+                None
         """
         mlflow.sklearn.log_model(
             sk_model, 
@@ -38,7 +39,8 @@ class LogTracker:
 
     def log_sientia_model(self, sk_model: Any, artifact_path: Any, **kwargs) -> None:
         """
-        Log a sklearn model.
+        Log a SIENTIA model. A SIENTIA model is any sklearn model build through the 
+        SIENTIA mlops library.
 
         Args:
             sk_model: scikit-learn model to be saved.
@@ -50,6 +52,7 @@ class LogTracker:
         mlflow.sklearn.log_model(
             sk_model, 
             artifact_path, 
+            # mlops library pip requirement
             extra_pip_requirements=[
                 "git+https://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@github.com/Aignosi/sientia-mlops-library.git"
             ], 

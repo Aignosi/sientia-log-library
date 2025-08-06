@@ -23,7 +23,7 @@ class ModelServing:
         self.ModelTracker = ModelTracker(self.client)
         self.RetrieverTracker = RetrieverTracker(self.client)
         
-        # Enable legacy suport so outdated code can still work with this new interface
+        # Enable legacy support so outdated code can still work with this new interface
         self._delegated_objects = []
         self._delegated_objects.append(self.LogTracker)
         self._delegated_objects.append(self.RunTracker)

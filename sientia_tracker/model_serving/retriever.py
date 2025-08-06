@@ -6,7 +6,7 @@ from sientia.exceptions import SientiaMlException
 
 class RetrieverTracker:
     def __init__(self, client):
-        self.client = client
+        self.client: mlflow.tracking.MlflowClient = client
         self.model_tracker = ModelTracker(client)
 
     def get_artifact(

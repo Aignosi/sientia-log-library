@@ -8,10 +8,12 @@ from sientia.exceptions import SientiaMlException
 import pandas as pd
 import numpy as np
 import mlflow
+from run_tracker import RunTracker
 
 class ModelTracker:
     def __init__(self, client):
-        self.client = client
+        self.client: mlflow.tracking.MlflowClient = client
+        self.run_tracker = RunTracker
     
     def get_model_uri(self, run_id: str, prediction: bool = True):
         """
@@ -57,8 +59,19 @@ class ModelTracker:
         Get information about registered models.
 
         Returns:
-            pandas.DataFrame: A DataFrame containing model information.
+            pandas.DataFrame: A DataFrame containing model information, such as:
+
+                - name (str): Name of the registered model.
+                - creation_timestamp (int): When the model was created (in milliseconds since epoch).
+                - last_updated_timestamp (int): When the model was last updated (in milliseconds since epoch).
+                - description (str): Optional description of the model.
+                - latest_versions (List[ModelVersion]): List of the latest versions per stage (e.g., Production, Staging).
+                - tags (List[RegisteredModelTag]): Custom tags attached to the model.
+                - aliases (Dict[str, str]), optional): Alias names pointing to specific model versions (e.g., {"prod": "5"}).
+                - id (str, optional): Unique internal identifier of the model (depending on MLflow backend).
+
         """
+
         registered_models = mlflow.search_registered_models()
         model_data = []
 
@@ -70,7 +83,7 @@ class ModelTracker:
         return df_model_info
 
     # Function to get information about model versions
-    def models_info(self, model_name: list):
+    def models_info(self, model_name: list) -> pd.DataFrame:
         """
         Get information about model versions for a given model name.
 
@@ -78,7 +91,8 @@ class ModelTracker:
             model_name (list): The name of the model.
 
         Returns:
-            pandas.DataFrame: A DataFrame containing model version information.
+            pandas.DataFrame: A DataFrame containing the version, current stage, run id,
+            associated tags and name of the model. 
         """
         try:
             mv = self.client.get_latest_versions(model_name)
@@ -263,28 +277,23 @@ class ModelTracker:
         data_path = "./data/retrain/train_data.csv"
         reference_data.to_csv(data_path, index=False)
 
-        def get_next_run_name(project_name):
-            runs = mlflow.search_runs(
-                experiment_names=[model_name], order_by=["start_time desc"]
-            )
-            next_run_number = len(runs) + 1
-            return f"{project_name}-{next_run_number}"
-
-        current_run_name = get_next_run_name(model_name)
+        current_run_name = self.run_tracker.get_next_run_name(model_name)
 
         experiment_description = "Retrain model due to drift detected"
         mlflow.set_experiment(model_name)
         with mlflow.start_run(
             run_name=current_run_name, description=experiment_description
         ) as run:
-            mlflow.log_params({"model_type": "Linear Regression"})
-            mlflow.log_params({"lag": data_model.lag})
-            mlflow.log_params({"ma": data_model.window})
-            mlflow.log_params({"Retrain": True})
-            mlflow.log_params({"low_lim": data_model.low_lim})
-            mlflow.log_params({"normalized": data_model.use_scaler})
-            mlflow.log_params({"ar": data_model.include_ar})
-            mlflow.log_params({"Removed_intervals": None})
+            mlflow.log_params({"model_name": "Linear Regression"})
+            mlflow.log_params({"lag_train": data_model.lag_train})
+            mlflow.log_params({"lag_val": data_model.lag_val})
+            mlflow.log_params({"retrain": True})
+            mlflow.log_params({"lower_limits": data_model.lower_limits})
+            mlflow.log_params({"upper_limits": data_model.upper_limits})
+            mlflow.log_params({"scaler_name": data_model.scaler_name})
+            mlflow.log_params({"scaler_params": data_model.scaler_params})
+            mlflow.log_params({"created_lags": data_model.created_lags})
+            mlflow.log_params({"removed_intervals": None})
             mlflow.log_metrics({"MSE": mse, "R2": r2})
             mlflow.sklearn.log_model(data_model, "data_model")
             mlflow.sklearn.log_model(

@@ -64,11 +64,39 @@ class RunTracker:
 
         return runs
     
-    def get_next_run_name(self, project_name):
-        runs = mlflow.search_runs(
-            experiment_names=[project_name], order_by=["start_time desc"]
-        )
-        next_run_number = len(runs) + 1
+    def get_next_run_name(self, project_name: str) -> str:
+        '''
+        Generates a name for a new run based on the current number of runs in a 
+        project.
+
+        Args:
+            project_name (str): Name of the project in which the run will be saved
+
+        Returns:
+            str: Next run name
+        '''
+        runs = self.search_runs_by_name(
+            experiment_names=[
+                project_name
+            ], order_by=["start_time desc"])
+        if len(runs) == 0:
+            return f"{project_name}-1"
+        run_names = runs['tags.mlflow.runName'].to_list()
+        
+        # Extract run numbers from existing run names
+        run_numbers = []
+        prefix = f"{project_name}-"
+        for run_name in run_names:
+            if run_name.startswith(prefix):
+                try:
+                    # Extract the number part after the prefix
+                    num = int(run_name[len(prefix):])
+                    run_numbers.append(num)
+                except (ValueError, IndexError):
+                    continue
+        
+        # Get the next run number (1 if no runs found, max + 1 otherwise)
+        next_run_number = max(run_numbers) + 1 if run_numbers else 1
         return f"{project_name}-{next_run_number}"
     
     def set_tag(self,key:str, value:Any) -> None:
