@@ -10,6 +10,11 @@ site/
 sientia_tracker/__pycache__
 dist/
 
+
+# demo files
+/demo.py
+data_demo/
+
 # Coverage reports
 .coverage
 coverage.xml
@@ -17,3 +22,4 @@ pytest.xml
 
 # Ignore all __pycache__ directories recursively
 **/__pycache__/
+

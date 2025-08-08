@@ -1,6 +1,6 @@
 import mlflow
 from typing import Any, List, Union
-from sientia_tracker.base_tracker import BaseTracker
+from sientia_tracker.logs.base_tracker import BaseTracker
 
 class RegressionTracker(BaseTracker):
     """
